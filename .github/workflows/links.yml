@@ -21,12 +21,12 @@ jobs:
       - name: Check every link on the page
         uses: lycheeverse/lychee-action@v2
         with:
-          # 403 and 429: the page exists, but the site blocks or slows automated checks
-          # (common for publishers and LinkedIn). Real breakage like 404 still fails.
+          # Email links are skipped by default.
+          # 403, 429 and 999: the page exists, but the site blocks or slows automated checks
+          # (common for publishers, and LinkedIn answers bots with 999). Real breakage like 404 still fails.
           args: >-
             --no-progress
             --max-retries 3
-            --accept 200..=299,403,429
-            --exclude-mail
+            --accept 200..=299,403,429,999
             site/index.html
           fail: true
