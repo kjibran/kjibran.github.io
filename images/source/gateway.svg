@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-label="A request tried at Groq, which is rate limited, then answered by Gemini, so OpenRouter is not needed">
+  <rect width="1200" height="675" fill="#FFFFFF"/>
+  <rect x="0" y="0" width="14" height="675" fill="#1B5E8C"/>
+  <g font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif">
+    <rect x="80" y="262" width="300" height="150" rx="14" fill="#F1F4F6" stroke="#9AA7B0" stroke-width="3"/>
+    <text x="230" y="328" font-size="40" font-weight="700" fill="#1D2830" text-anchor="middle">Request</text>
+    <text x="230" y="370" font-size="26" fill="#5A6670" text-anchor="middle">one API, one key</text>
+
+    <path d="M380 305 C 540 305, 560 140, 740 140" fill="none" stroke="#B2182B" stroke-width="5" stroke-dasharray="12 10"/>
+    <path d="M380 337 L 740 337" fill="none" stroke="#1B5E8C" stroke-width="7"/>
+    <path d="M380 369 C 540 369, 560 535, 740 535" fill="none" stroke="#C9D2D8" stroke-width="5" stroke-dasharray="4 12"/>
+
+    <text x="500" y="200" font-size="26" fill="#5A6670">tried first</text>
+    <text x="500" y="320" font-size="26" fill="#1B5E8C" font-weight="700">failover</text>
+
+    <rect x="740" y="80" width="380" height="120" rx="14" fill="#FFFFFF" stroke="#B2182B" stroke-width="3"/>
+    <text x="775" y="133" font-size="38" font-weight="700" fill="#1D2830">Groq</text>
+    <text x="775" y="175" font-size="27" fill="#B2182B">429, rate limited</text>
+
+    <rect x="740" y="277" width="380" height="120" rx="14" fill="#EAF2F8" stroke="#1B5E8C" stroke-width="5"/>
+    <text x="775" y="330" font-size="38" font-weight="700" fill="#1D2830">Gemini</text>
+    <text x="775" y="372" font-size="27" fill="#1B5E8C" font-weight="700">200, answered</text>
+
+    <rect x="740" y="475" width="380" height="120" rx="14" fill="#FFFFFF" stroke="#C9D2D8" stroke-width="3"/>
+    <text x="775" y="528" font-size="38" font-weight="700" fill="#8A959D">OpenRouter</text>
+    <text x="775" y="570" font-size="27" fill="#8A959D">not needed</text>
+  </g>
+</svg>

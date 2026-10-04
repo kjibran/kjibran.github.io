@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ c.site.title }}</title>
+<meta name="description" content="{{ c.site.description }}">
+<meta name="author" content="{{ c.person.name }}">
+<link rel="canonical" href="{{ c.site.url }}">
+{% if c.site.google_verification %}<meta name="google-site-verification" content="{{ c.site.google_verification }}">
+{% endif %}
+<meta property="og:type" content="profile">
+<meta property="og:title" content="{{ c.site.title }}">
+<meta property="og:description" content="{{ c.site.description }}">
+<meta property="og:url" content="{{ c.site.url }}">
+<meta property="og:image" content="{{ c.site.url }}{{ og.src }}">
+<meta property="og:image:width" content="{{ og.width }}">
+<meta property="og:image:height" content="{{ og.height }}">
+<meta property="og:image:alt" content="{{ c.person.photo_alt }}">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#FBFCFC" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#151C22" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<script>
+  // Apply a saved theme before the page is drawn, so it never flashes the wrong colours
+  try { var saved = localStorage.getItem("theme"); if (saved) document.documentElement.dataset.theme = saved; } catch (e) {}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700&display=swap">
+<script type="application/ld+json">{{ json_ld | safe }}</script>
+<style>
+:root {
+  color-scheme: light;
+  --paper: #FBFCFC;
+  --ink: #1D2830;
+  --muted: #5A6670;
+  --line: #DCE2E6;
+  --accent: #1B5E8C;
+  --accent-strong: #0F4266;
+}
+/* Dark colours: used when the visitor's system prefers dark, unless they chose light */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --paper: #151C22;
+    --ink: #E3E8EB;
+    --muted: #9BA7B0;
+    --line: #2B363F;
+    --accent: #74B3DE;
+    --accent-strong: #A9D0EC;
+  }
+}
+/* Dark colours chosen with the button */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --paper: #151C22;
+  --ink: #E3E8EB;
+  --muted: #9BA7B0;
+  --line: #2B363F;
+  --accent: #74B3DE;
+  --accent-strong: #A9D0EC;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Schibsted Grotesk", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+}
+.page { max-width: 47.5rem; margin: 0 auto; padding: 3.5rem 1.25rem 4rem; position: relative; }
+a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
+a:hover { color: var(--accent-strong); text-decoration-thickness: 2px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+img { display: block; max-width: 100%; height: auto; }
+
+/* Light and dark mode button: a round icon button with a clear outline */
+.theme-toggle {
+  position: absolute; top: 1.25rem; right: 1.25rem;
+  width: 2.75rem; height: 2.75rem; padding: 0;
+  display: grid; place-items: center;
+  color: var(--ink); background: var(--paper);
+  border: 2px solid var(--ink); border-radius: 50%;
+  cursor: pointer;
+}
+.theme-toggle:hover { background: var(--ink); color: var(--paper); }
+.theme-toggle svg { width: 1.3rem; height: 1.3rem; }
+.theme-toggle[data-mode="light"] .icon-sun,
+.theme-toggle[data-mode="dark"] .icon-moon { display: none; }
+
+.intro-head { display: flex; align-items: center; gap: 1.25rem; padding-right: 3.5rem; }
+.photo { width: 6.5rem; height: 6.5rem; border-radius: 50%; object-fit: cover; flex: none; }
+h1 { font-size: 2.25rem; line-height: 1.1; font-weight: 700; margin: 0; letter-spacing: -0.01em; }
+.role { margin: 0.35rem 0 0; color: var(--muted); font-size: 1.0625rem; }
+.tagline { font-size: 1.5rem; line-height: 1.35; font-weight: 500; margin: 2rem 0 0.75rem; max-width: 36ch; }
+.lede { margin: 0; color: var(--muted); max-width: 62ch; }
+.contact { display: flex; flex-wrap: wrap; gap: 0.4rem 1.25rem; margin-top: 1.25rem; }
+
+h2 {
+  font-size: 1.5rem; font-weight: 700; margin: 3.75rem 0 0;
+  padding-top: 1.25rem; border-top: 1px solid var(--line);
+}
+h3 { font-size: 1.2rem; font-weight: 700; margin: 2.5rem 0 0.2rem; }
+.section-note { margin: 0; color: var(--muted); max-width: 62ch; }
+
+/* Every project and study: text first, then the image */
+.item { margin-top: 1.75rem; padding-top: 1.75rem; border-top: 1px solid var(--line); }
+.section-note + .item { border-top: none; padding-top: 0.25rem; }
+.item h4 { font-size: 1.3rem; line-height: 1.25; margin: 0 0 0.5rem; }
+.item p { margin: 0 0 0.6rem; max-width: 64ch; }
+.result { font-weight: 500; }
+.tech, .credit { color: var(--muted); font-size: 0.9rem; }
+.links { display: flex; flex-wrap: wrap; gap: 0.3rem 1.1rem; }
+.shot {
+  display: block; max-width: 36rem; aspect-ratio: 16 / 9; margin-top: 1rem;
+  background: #fff; border: 1px solid var(--line); border-radius: 8px; overflow: hidden;
+}
+.shot img { width: 100%; height: 100%; object-fit: contain; }
+
+.principles { margin: 1.25rem 0 0; padding: 0; list-style: none; }
+.principles li { margin: 0 0 0.9rem; max-width: 64ch; }
+
+.skills { margin: 1.25rem 0 0; }
+.skills div { display: grid; grid-template-columns: 13rem 1fr; gap: 1rem; padding: 0.6rem 0; border-bottom: 1px solid var(--line); }
+.skills dt { font-weight: 500; }
+.skills dd { margin: 0; color: var(--muted); }
+
+.about p { max-width: 64ch; }
+footer { margin-top: 4rem; color: var(--muted); font-size: 0.9rem; }
+
+@media (max-width: 40rem) {
+  .page { padding-top: 4.25rem; }
+  h1 { font-size: 1.85rem; }
+  .tagline { font-size: 1.3rem; }
+  .intro-head { padding-right: 0; }
+  .skills div { grid-template-columns: 1fr; gap: 0.1rem; }
+}
+</style>
+{% if c.site.goatcounter %}<script data-goatcounter="https://{{ c.site.goatcounter }}.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+{% endif %}
+</head>
+<body>
+<div class="page">
+
+<button class="theme-toggle" type="button" data-mode="light" aria-label="Switch to dark mode">
+  <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>
+  </svg>
+  <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="4.5"/>
+    <path d="M12 1.5v2.5M12 20v2.5M1.5 12H4M20 12h2.5M4.6 4.6l1.8 1.8M17.6 17.6l1.8 1.8M4.6 19.4l1.8-1.8M17.6 6.4l1.8-1.8"/>
+  </svg>
+</button>
+
+<header>
+  <div class="intro-head">
+    <img class="photo" src="{{ photo.src }}" width="{{ photo.width }}" height="{{ photo.height }}" alt="{{ c.person.photo_alt }}" fetchpriority="high">
+    <div>
+      <h1>{{ c.person.name }}</h1>
+      <p class="role">{{ c.person.role }}, {{ c.person.location }}</p>
+    </div>
+  </div>
+  <p class="tagline">{{ c.person.tagline }}</p>
+  <p class="lede">{{ c.person.lede }}</p>
+  <nav class="contact" aria-label="Contact and profiles">
+    {% for link in c.person.links if link.url %}<a href="{{ link.url }}"{% if not link.url.startswith('mailto:') %} rel="me"{% endif %}>{{ link.label }}</a>
+    {% endfor %}
+  </nav>
+</header>
+
+<main>
+{% macro item_block(item, img) %}
+  <article class="item">
+    <h4>{{ item.title }}</h4>
+    <p>{{ item.summary }}</p>
+    <p class="result">{{ item.result }}</p>
+    <p class="tech">{{ item.tech | join(", ") }}</p>
+    <p class="links">{% for link in item.links if link.url %}<a href="{{ link.url }}">{{ link.label }}</a>{% endfor %}</p>
+    <a class="shot" href="{{ item.links[0].url }}" tabindex="-1" aria-hidden="true">
+      <img src="{{ img.src }}" width="{{ img.width }}" height="{{ img.height }}" alt="{{ item.image_alt }}" loading="lazy" decoding="async">
+    </a>
+    {% if item.credit is defined %}<p class="credit" style="margin-top: 0.5rem">{{ item.credit }}</p>{% endif %}
+  </article>
+{% endmacro %}
+
+<section aria-labelledby="projects">
+  <h2 id="projects">Projects</h2>
+
+  <h3>{{ c.projects_heading }}</h3>
+  <p class="section-note">{{ c.projects_note }}</p>
+  {% for item in c.projects %}{{ item_block(item, images[item.image]) }}{% endfor %}
+
+  <h3>{{ c.research_heading }}</h3>
+  <p class="section-note">{{ c.research_note }}</p>
+  {% for item in c.research %}{{ item_block(item, images[item.image]) }}{% endfor %}
+</section>
+
+<section aria-labelledby="how">
+  <h2 id="how">How I work</h2>
+  <ul class="principles">
+    {% for p in c.principles %}<li><strong>{{ p.title }}</strong> {{ p.text }}</li>
+    {% endfor %}
+  </ul>
+</section>
+
+<section aria-labelledby="skills">
+  <h2 id="skills">Skills</h2>
+  <dl class="skills">
+    {% for s in c.skills %}<div><dt>{{ s.group }}</dt><dd>{{ s.tools }}</dd></div>
+    {% endfor %}
+  </dl>
+</section>
+
+<section class="about" aria-labelledby="about">
+  <h2 id="about">About</h2>
+  {% for paragraph in c.about %}<p>{{ paragraph }}</p>
+  {% endfor %}
+</section>
+</main>
+
+<footer>
+  <p>{{ c.person.name }}, {{ year }}. Built with Python and hosted on GitHub Pages. <a href="https://github.com/kjibran/kjibran.github.io">Source</a></p>
+</footer>
+
+</div>
+
+<script>
+  // Light and dark mode button. Follows the system setting until the visitor chooses.
+  (function () {
+    var root = document.documentElement;
+    var button = document.querySelector(".theme-toggle");
+    var systemDark = window.matchMedia("(prefers-color-scheme: dark)");
+
+    function current() { return root.dataset.theme || (systemDark.matches ? "dark" : "light"); }
+    function update() {
+      var dark = current() === "dark";
+      button.dataset.mode = dark ? "dark" : "light";
+      button.setAttribute("aria-label", dark ? "Switch to light mode" : "Switch to dark mode");
+    }
+    button.addEventListener("click", function () {
+      var next = current() === "dark" ? "light" : "dark";
+      root.dataset.theme = next;
+      try { localStorage.setItem("theme", next); } catch (e) {}
+      update();
+    });
+    systemDark.addEventListener("change", update);
+    update();
+  })();
+</script>
+</body>
+</html>

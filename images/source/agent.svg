@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-label="An AI agent answering a question in four tool calls, with the answer and its source">
+  <rect width="1200" height="675" fill="#FFFFFF"/>
+  <rect x="0" y="0" width="14" height="675" fill="#1B5E8C"/>
+  <g font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" fill="#1D2830">
+    <text x="80" y="118" font-size="50" font-weight="700">How many people lived in Aarhus</text>
+    <text x="80" y="180" font-size="50" font-weight="700">on 1 January 2020?</text>
+  </g>
+  <g font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="31" fill="#46525B">
+    <text x="80" y="265"><tspan fill="#1B5E8C" font-weight="700">1</tspan>   search_tables("population")</text>
+    <text x="80" y="320"><tspan fill="#1B5E8C" font-weight="700">2</tspan>   describe_table("PAAROE03")</text>
+    <text x="80" y="375"><tspan fill="#1B5E8C" font-weight="700">3</tspan>   find_values("Aarhus") = 751</text>
+    <text x="80" y="430"><tspan fill="#1B5E8C" font-weight="700">4</tspan>   get_data("PAAROE03", 751, 2020)</text>
+  </g>
+  <line x1="80" y1="478" x2="1120" y2="478" stroke="#DCE2E6" stroke-width="3"/>
+  <g font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif">
+    <text x="80" y="565" font-size="64" font-weight="800" fill="#1B5E8C">349 983 people</text>
+    <text x="80" y="620" font-size="28" fill="#5A6670">Source: Statistics Denmark, StatBank.dk/paaroe03</text>
+  </g>
+</svg>

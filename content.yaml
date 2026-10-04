@@ -1,0 +1,171 @@
+# All text and links of the portfolio. Edit this file, push, and the site rebuilds itself.
+# Empty values ("") are skipped, so nothing broken ever appears on the page.
+
+site:
+  url: https://kjibran.github.io/
+  title: "Jibran Khan, Data Scientist and ML/AI Engineer in Copenhagen"
+  description: >-
+    Data scientist and ML/AI engineer in Copenhagen. Production-ready ML pipelines, MLOps,
+    LLM applications, RAG and AI agents, with live projects and open source code.
+  goatcounter: ""          # your GoatCounter code, for example "kjibran"
+  google_verification: ""  # the code from Google Search Console
+
+person:
+  name: Jibran Khan
+  role: Data Scientist and ML/AI Engineer
+  location: Copenhagen, Denmark
+  photo: photo.jpg
+  photo_alt: Jibran Khan
+  tagline: >-
+    I build machine learning and AI systems that run in production, from data pipelines
+    and models to deployment, monitoring and evaluation.
+  lede: >-
+    Physicist with a PhD and ten years of experience in atmospheric and acoustic
+    simulation, now building end-to-end ML pipelines, MLOps workflows and AI agents.
+    Every project here is live, open source and documented.
+
+  links:
+    - {label: jk.envs@gmail.com, url: "mailto:jk.envs@gmail.com"}
+    - {label: LinkedIn, url: ""}
+    - {label: GitHub, url: "https://github.com/kjibran"}
+    - {label: Hugging Face, url: "https://huggingface.co/khajlk"}
+    - {label: ORCID, url: "https://orcid.org/0000-0003-2080-2871"}
+
+projects_heading: Production ML and agentic AI
+projects_note: >-
+  End-to-end systems with automated pipelines, CI/CD, tests and monitoring. Each one is
+  live and open source.
+
+projects:
+  - title: Ask Statistics Denmark
+    image: agent.svg
+    image_alt: The agent answering a question about Aarhus in four steps, with the answer and its source
+    summary: >-
+      An AI agent that answers questions about Denmark with official statistics. It uses RAG
+      over 2,300 tables and LLM tool calling to find the right table, fetch the numbers and
+      cite the source, and it shows every step it took.
+    result: >-
+      Hybrid search (BM25 and vector search with pgvector) evaluated on 48 labelled questions
+      and tracked in MLflow. The agent answers 80 to 87% of test questions correctly and
+      declines every question the data cannot answer.
+    tech: [Python, LLMs, RAG, AI agents, tool calling, pgvector, PostgreSQL, SQL, MLflow, Gradio, CI/CD, GitHub Actions]
+    links:
+      - {label: Live demo, url: "https://huggingface.co/spaces/khajlk/ask-statistics-denmark"}
+      - {label: Code and results, url: "https://github.com/kjibran/statbank-rag-agent"}
+      - {label: Experiments, url: "https://dagshub.com/kjibran/statbank-rag-agent/experiments"}
+
+  - title: Copenhagen NO₂ forecast
+    image: no2_chart.png
+    image_alt: Dashboard headline with the NO2 peak forecast for tomorrow and an hourly colour strip for the next 24 hours
+    summary: >-
+      A production-ready MLOps pipeline that forecasts hourly air pollution for the next
+      24 hours at a busy Copenhagen street. Data ingestion, model scoring and the public
+      dashboard update every hour without manual work.
+    result: >-
+      30% more accurate than a persistence baseline. Versioned training data, experiment
+      tracking and a model registry, weekly automated retraining with champion and
+      challenger models, and daily monitoring of accuracy and data drift.
+    tech: [Python, SQL, PostgreSQL, LightGBM, MLOps, MLflow, FastAPI, Docker, CI/CD, GitHub Actions]
+    links:
+      - {label: Live dashboard, url: "https://kjibran.github.io/mlops-air-quality-forecast/"}
+      - {label: Code and results, url: "https://github.com/kjibran/mlops-air-quality-forecast"}
+      - {label: Dataset, url: "https://huggingface.co/datasets/khajlk/copenhagen-air-quality-hourly"}
+      - {label: Experiments, url: "https://dagshub.com/kjibran/mlops-air-quality-forecast/experiments"}
+
+  - title: LLM gateway
+    image: gateway.svg
+    image_alt: A request tried at Groq, which is rate limited, then answered by Gemini
+    summary: >-
+      A REST API in front of three LLM providers (Groq, Gemini and OpenRouter) with automatic
+      failover. When one provider fails, the request moves to the next, and every attempt is
+      logged with its latency and error.
+    result: >-
+      Built and tested while providers retired a model, moved a free model to paid only and
+      returned overload errors. The gateway kept answering without any change for its users.
+    tech: [Python, FastAPI, REST API, LLMs, Docker, pytest, CI/CD, GitHub Actions, Render]
+    links:
+      - {label: Live demo, url: "https://huggingface.co/spaces/khajlk/llm-gateway-demo"}
+      - {label: Code, url: "https://github.com/kjibran/llm-gateway"}
+
+research_heading: Applied ML research
+research_note: >-
+  Peer-reviewed deep learning studies from 2026, with code, data and trained models openly
+  available.
+
+research:
+  - title: Fine-tuning audio transformers for vehicle sound classification
+    image: paper2_figure.png
+    image_alt: Bar chart of balanced F1 for five models, rising from 0.26 for the CNN baseline to 0.50 for BEATs with ArcFace
+    summary: >-
+      Fine-tuned pre-trained audio transformers (BEATs, AST) to recognise vehicles by sound,
+      trained on recordings from Germany and tested on recordings from Australia.
+    result: >-
+      77% better than a CNN baseline. ArcFace metric learning raised the rarest class,
+      buses with 53 training samples, from 0.38 to 0.54 F1.
+    tech: [Python, PyTorch, Hugging Face Transformers, transfer learning, domain adaptation, scikit-learn, librosa]
+    credit: "Figure: Khan (2026), Acoustics 8(3), 63. CC BY 4.0."
+    links:
+      - {label: Paper, url: "https://doi.org/10.3390/acoustics8030063"}
+      - {label: Code, url: "https://doi.org/10.5281/zenodo.22203993"}
+
+  - title: Synthetic training data from physics and generative AI
+    image: paper1_figure.png
+    image_alt: Spectrograms of real, physics-simulated and AI-generated sounds of cars, trucks and motorcycles
+    summary: >-
+      Trained a vehicle sound classifier on real recordings plus synthetic sounds from a physics
+      simulator and from AudioLDM, a text-to-audio diffusion model, then tested it on recordings
+      from other countries and microphones.
+    result: >-
+      Combining both synthetic sources improved balanced F1 by 55% over training on real
+      data alone.
+    tech: [Python, deep learning, CNN, generative AI, diffusion models, data augmentation]
+    credit: "Figure: Khan, Ryzhikov and Kolehmainen (2026), Applied Sciences 16(14), 7234. CC BY 4.0."
+    links:
+      - {label: Paper, url: "https://doi.org/10.3390/app16147234"}
+      - {label: Code, url: "https://doi.org/10.5281/zenodo.21264250"}
+
+principles:
+  - title: Check the data before the model.
+    text: >-
+      Most problems start in the data, so that is where I look first. In the forecasting
+      project this uncovered mislabelled years in a provider's API and a silent change in how
+      seven years of measurements had been processed.
+  - title: Measure every change.
+    text: >-
+      Each change is compared with a baseline and logged in MLflow. When hybrid search first
+      made results worse, the numbers showed why and how to fix it.
+  - title: Build for the day after launch.
+    text: >-
+      Versioned data, automated tests, monitoring and scheduled retraining keep the systems
+      running without manual care.
+  - title: Document what did not work.
+    text: >-
+      Rejected models, failed approaches and known limitations are written up next to the
+      results.
+
+skills:
+  - group: Machine learning and data science
+    tools: Python, pandas, NumPy, scikit-learn, LightGBM, XGBoost, PyTorch, time series forecasting, feature engineering, statistical analysis, model evaluation
+  - group: AI and LLMs
+    tools: LLM applications, RAG, AI agents and tool calling, hybrid search, embeddings, vector databases (pgvector), fine-tuning transformers, Hugging Face Transformers, LLM evaluation
+  - group: LLM providers and APIs
+    tools: Groq, Google Gemini, OpenRouter, OpenAI-compatible APIs
+  - group: MLOps and engineering
+    tools: MLflow, model registry, CI/CD, GitHub Actions, Docker, FastAPI, REST APIs, automated retraining, monitoring and drift detection, pytest, Git, uv, ruff
+  - group: Cloud and deployment
+    tools: Supabase, Render, Hugging Face Hub and Spaces, DagsHub, GitHub Pages, Gradio
+  - group: Data
+    tools: SQL, PostgreSQL, data pipelines, data quality, Hugging Face Datasets, geospatial data and GIS
+
+about:
+  - >-
+    I am a physicist and researcher at Aarhus University, where I work as Assistant Professor.
+    For ten years I have worked in environmental modelling, with a focus on air quality and
+    sound. My work combines domain knowledge from physical modelling with machine learning,
+    and I have built forecasting systems that run operationally and deliver new predictions
+    every hour.
+  - >-
+    After many years at leading research institutions, I am looking for industry roles in
+    data science, machine learning and AI engineering. I want to work on systems that solve
+    real problems for real users, with careful evaluation built in from the start. I also
+    enjoy learning new tools and methods, and I keep building to stay current.
