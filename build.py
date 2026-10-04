@@ -1,4 +1,4 @@
-"""Build the portfolio: content.yaml + templates/ + images/source/ -> site/.
+"""Build the portfolio: content.yaml + templates/ + images/source/ + fonts/ -> site/.
 
 Run locally with:  uv run python build.py
 GitHub Actions runs the same command on every push and publishes site/.
@@ -17,11 +17,12 @@ from PIL import Image, ImageOps
 
 ROOT = Path(__file__).parent
 SOURCE_IMAGES = ROOT / "images" / "source"
+FONTS = ROOT / "fonts"
 SITE = ROOT / "site"
 IMAGES_OUT = SITE / "img"
 
 FEATURE_WIDTH = 1520  # main projects, shown at up to 760 px wide, twice that for sharp screens
-THUMB_WIDTH = 720     # research thumbnails, shown at up to 360 px wide
+THUMB_WIDTH = 720     # research figures
 PHOTO_SIZE = 312      # shown at 104 px, three times that for sharp screens
 OG_SIZE = 1200        # link preview image for LinkedIn and others
 LOCAL_TZ = ZoneInfo("Europe/Copenhagen")
@@ -87,6 +88,7 @@ def main() -> None:
     if SITE.exists():
         shutil.rmtree(SITE)
     IMAGES_OUT.mkdir(parents=True)
+    shutil.copytree(FONTS, SITE / "fonts")  # self-hosted font, no request to Google Fonts
 
     photo = prepare_image(c["person"]["photo"], PHOTO_SIZE, "photo.webp", square=True)
     og = prepare_image(c["person"]["photo"], OG_SIZE, "og.jpg", square=True, fmt="JPEG")
