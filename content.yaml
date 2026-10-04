@@ -7,8 +7,8 @@ site:
   description: >-
     Data scientist and ML/AI engineer in Copenhagen. Production-ready ML pipelines, MLOps,
     LLM applications, RAG and AI agents, with live projects and open source code.
-  goatcounter: ""          # your GoatCounter code, for example "kjibran"
-  google_verification: ""  # the code from Google Search Console
+  goatcounter: "kjibran"          # your GoatCounter code, for example "kjibran"
+  google_verification: "GSmmT1VML8gtMrVDN8GJIbVeHyYjPDKoLvkHPMljEAE"  # the code from Google Search Console
 
 person:
   name: Jibran Khan
